@@ -22,7 +22,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    @if (User.Identity.IsAuthenticated)
+                    @if (User.Identity.IsAuthenticated) // this is saying if user is signed in and authenticated then add the Notes link to the navbar
                     {
                         <li>@Html.ActionLink("Notes","Index","Note")</li>
                     }
