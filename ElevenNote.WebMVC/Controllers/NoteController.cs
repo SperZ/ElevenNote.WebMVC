@@ -54,7 +54,7 @@ namespace ElevenNote.WebMVC.Controllers
         public ActionResult Details(int id)
         {
             var service = CreateNoteService();
-            var model = service.GetNotById(id);
+            var model = service.GetNoteById(id);
 
             return View(model);
         }
