@@ -52,5 +52,13 @@ namespace ElevenNote.WebMVC.Controllers
             ModelState.AddModelError("", "Unable to create category");
             return View(model);
         }
+
+        public ActionResult Details(int id)
+        {
+            var service = CreateCategoryService();
+            var model = service.GetCategoryById(id);
+
+            return View(model);
+        }
     }
 }
