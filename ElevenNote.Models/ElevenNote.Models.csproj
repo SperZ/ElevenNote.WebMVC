@@ -54,10 +54,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NoteCreate.cs" />
-    <Compile Include="NoteDetail.cs" />
-    <Compile Include="NoteEdit.cs" />
-    <Compile Include="NoteListItem.cs" />
+    <Compile Include="CategoryModels\CategoryCreate.cs" />
+    <Compile Include="CategoryModels\CategoryDetails.cs" />
+    <Compile Include="CategoryModels\CategoryEdit.cs" />
+    <Compile Include="CategoryModels\CategoryListItem.cs" />
+    <Compile Include="NoteModels\NoteCreate.cs" />
+    <Compile Include="NoteModels\NoteDetail.cs" />
+    <Compile Include="NoteModels\NoteEdit.cs" />
+    <Compile Include="NoteModels\NoteListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
