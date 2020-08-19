@@ -8,5 +8,7 @@ namespace ElevenNote.Models.CategoryModels
 {
     public class CategoryEdit
     {
+        public int CategoryId { get; set; }
+        public string Title { get; set; }
     }
 }

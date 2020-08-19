@@ -69,7 +69,8 @@ namespace ElevenNote.WebMVC.Controllers
                 {
                     NoteId = detail.NoteId,
                     Title = detail.Title,
-                    Content = detail.Content
+                    Content = detail.Content,
+                    CategoryId = detail.CategoryId
                 };
             return View(model);
         }
