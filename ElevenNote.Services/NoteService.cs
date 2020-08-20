@@ -2,6 +2,7 @@
 using ElevenNote.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Objects.DataClasses;
 using System.Linq;
 using System.Runtime.InteropServices.ComTypes;
 using System.Text;
@@ -74,15 +75,15 @@ namespace ElevenNote.Services
                         NoteId = entity.NoteID,
                         Title = entity.Title,
                         Content = entity.Content,
-                        CategoryId = entity.Category.CategoryId,
-                        CategoryTitle = entity.Category.Title,
+                        CategoryId = entity.CategoryId,
+                        CategoryTitle = GetCategoryTitle(id),
                         CreatedUtc = entity.CreatedUtc,
                         ModifiedUtc = entity.ModifiedUtc
                     };
             }
         }
 
-        public bool UdpateNote(NoteEdit model)
+        public bool UpdateNote(NoteEdit model)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -94,6 +95,8 @@ namespace ElevenNote.Services
                 entity.Title = model.Title;
                 entity.Content = model.Content;
                 entity.ModifiedUtc = DateTimeOffset.UtcNow;
+                entity.CategoryId = model.CategoryId;
+                entity.IsStarred = model.IsStarred;
 
                 return ctx.SaveChanges() == 1;
             }
@@ -113,6 +116,36 @@ namespace ElevenNote.Services
                 return ctx.SaveChanges() == 1;
             }
                 
+        }
+
+        public string GetCategoryTitle(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var category =
+                    ctx
+                    .Notes
+                    .Single(e => e.NoteID == id)
+                    .Category;
+
+                if (category == null || string.IsNullOrEmpty(category.Title))
+                {
+                    return "There is no category referenced";
+                }
+
+                else
+                    using (var context = new ApplicationDbContext())
+                    {
+                        var entity =
+                            ctx
+                            .Notes
+                            .Single(e => e.NoteID == id && e.OwnerId == _userId);
+
+                        entity.Title = entity.Category.Title;
+
+                        return (entity.Title);
+                    }
+            }
         }
     }
 }

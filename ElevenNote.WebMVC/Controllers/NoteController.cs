@@ -70,7 +70,7 @@ namespace ElevenNote.WebMVC.Controllers
                     NoteId = detail.NoteId,
                     Title = detail.Title,
                     Content = detail.Content,
-                    CategoryId = detail.CategoryId
+                    CategoryId = detail.CategoryId,
                 };
             return View(model);
         }
@@ -88,7 +88,7 @@ namespace ElevenNote.WebMVC.Controllers
             }
 
             var service = CreateNoteService();
-            if (service.UdpateNote(model))
+            if (service.UpdateNote(model))
             {
                 TempData["SaveResult"] = "Your note has been updated";
                 return RedirectToAction("Index");
